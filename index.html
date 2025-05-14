@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>綠綠賞卡片</title>
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- iOS specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="會員卡_v3">
+    <meta name="format-detection" content="telephone=no">
+    <!-- iOS icons -->
+    <link rel="apple-touch-icon" sizes="152x152" href="qrcode/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="qrcode/icon.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="qrcode/icon.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="qrcode/icon.png">
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>綠綠賞會員卡</h1>
+            <div class="filter-icons">
+                <div class="filter-icon active" data-filter="all" title="全部">
+                    <i class="fas fa-th"></i>
+                </div>
+                <div class="filter-icon" data-filter="phone" title="電話卡">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="filter-icon" data-filter="physical" title="實體卡">
+                    <i class="fas fa-address-card"></i>
+                </div>
+                <div class="filter-icon" data-filter="physical2" title="實體卡2">
+                    <i class="fas fa-address-card"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cards-container"></div>
+    </div>
+    
+    <script>
+        // 卡片数据
+        const cardData = [
+            { memberId: "4506358841", cardType: "電話:69223825" },
+            { memberId: "0362016724", cardType: "電話:46404014" },
+            { memberId: "0441236134", cardType: "電話:62352594" },
+            { memberId: "8855917996", cardType: "電話:54880501" },
+            { memberId: "6186573189", cardType: "電話:91425065" },
+            { memberId: "7332000034", cardType: "實體卡" },
+            { memberId: "4465040440", cardType: "實體卡" },
+            { memberId: "6346719346", cardType: "實體卡" },
+            { memberId: "6927101514", cardType: "實體卡" },
+            { memberId: "7980949805", cardType: "實體卡" },
+            { memberId: "5578019597", cardType: "實體卡" },
+            { memberId: "6133919598", cardType: "實體卡" },
+            { memberId: "7164719599", cardType: "實體卡" },
+            { memberId: "2971014939", cardType: "實體卡" },
+            { memberId: "3046811277", cardType: "實體卡" },
+            { memberId: "2890817845", cardType: "實體卡" },
+            { memberId: "4324119595", cardType: "實體卡" },
+            { memberId: "9321519600", cardType: "實體卡" },
+            { memberId: "9461819601", cardType: "實體卡" },
+            { memberId: "8728315324", cardType: "實體卡2" },
+            { memberId: "6289813107", cardType: "實體卡2" },
+            { memberId: "5525211475", cardType: "實體卡2" },
+            { memberId: "2601701976", cardType: "實體卡2" },
+            { memberId: "7174002029", cardType: "實體卡2" },
+            { memberId: "3610417166", cardType: "實體卡2" },
+            { memberId: "3213017689", cardType: "實體卡2" },
+            { memberId: "4744417874", cardType: "實體卡2" }
+        ];
+        
+        function generateCard(memberId, cardType) {
+            return `
+                <div class="card-container">
+                    <div class="member-header" data-member-id="${memberId}">
+                        <div class="member-id">編號：${memberId}</div>
+                        <div class="alert">未完成廚餘回收</div>
+                    </div>
+                    <div class="card-content-wrapper">
+                        <div class="green-card-container">
+                            <div class="card-type">${cardType}</div>
+                            <div class="qrcode-container">
+                                <img src="qrcode/${memberId}.png" alt="QR Code">
+                            </div>
+                            <div class="recycle-info">
+                                <h2>廚餘回收</h2>
+                                <label class="switch">
+                                    <input type="checkbox" class="recycleCheck">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+            // 初始化页面
+            document.addEventListener('DOMContentLoaded', function() {
+                const cardsContainer = document.querySelector('.cards-container');
+                
+            // 清空现有内容
+                cardsContainer.innerHTML = '';
+        
+             // 生成所有卡片
+             let lastCardType = '';
+            cardData.forEach((card, index) => {
+                // 获取卡片的基本类型（电话卡、实体卡或实体卡2）
+                const currentType = card.cardType.startsWith('電話') ? '電話卡' : card.cardType;
+                
+                // 如果当前卡片类型与上一个不同，且不是第一个卡片，添加分隔线
+                if (lastCardType !== '' && currentType !== lastCardType) {
+                    cardsContainer.innerHTML += `<hr style="border-color:#f00; width: 99%; height: 0px; margin: 5px 0;">`;
+                }
+                
+                cardsContainer.innerHTML += generateCard(card.memberId, card.cardType);
+                lastCardType = currentType;
+                });
+            });
+            </script>
+    <script src="CardManager.js"></script>
+</body>
+</html>
