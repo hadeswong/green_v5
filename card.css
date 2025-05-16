@@ -40,20 +40,20 @@ body {
 
 h1 {
     color: #333;
-    margin: 0 0 5px 0;
+    margin: 0;
     font-size: 28px;
     font-weight: 600;
     position: relative;
-    top: 0;
-    padding: 15px 0;
+    padding: 10px 0;
     z-index: 10;
 }
 
 .header-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 10px;
     padding: 0 10px;
 }
@@ -61,7 +61,8 @@ h1 {
 .filter-icons {
     display: flex;
     gap: 15px;
-    margin-left: 20px;
+    margin: 0 0 10px;
+    justify-content: center;
 }
 
 .filter-icon {
