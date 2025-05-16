@@ -46,7 +46,9 @@ class CardManager {
                 card.style.display = 'block';
             }else if (filter === 'physical2' && cardType === '實體卡2') {
                card.style.display = 'block';
-            }
+            }else if (filter === 'physical3' && cardType === '新實體卡') {
+                card.style.display = 'block';
+             }
         });
     }
 
