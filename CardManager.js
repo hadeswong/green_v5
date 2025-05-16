@@ -40,15 +40,25 @@ class CardManager {
             // 根据筛选条件显示卡片
             if (filter === 'all') {
                 card.style.display = 'block';
-            } else if (filter === 'phone' && cardType.startsWith('電話')) {
-                card.style.display = 'block';
-            } else if (filter === 'physical' && cardType === '實體卡') {
-                card.style.display = 'block';
-            }else if (filter === 'physical2' && cardType === '實體卡2') {
-               card.style.display = 'block';
-            }else if (filter === 'physical3' && cardType === '新實體卡') {
-                card.style.display = 'block';
-             }
+                // 显示所有分隔线
+                document.querySelectorAll('hr').forEach(hr => {
+                    hr.style.display = 'block';
+                });
+            } else {
+                if (filter === 'phone' && cardType.startsWith('電話')) {
+                    card.style.display = 'block';
+                } else if (filter === 'physical' && cardType === '實體卡') {
+                    card.style.display = 'block';
+                } else if (filter === 'physical2' && cardType === '實體卡2') {
+                    card.style.display = 'block';
+                } else if (filter === 'physical3' && cardType === '新實體卡') {
+                    card.style.display = 'block';
+                }
+                // 隐藏所有分隔线
+                document.querySelectorAll('hr').forEach(hr => {
+                    hr.style.display = 'none';
+                });
+            }
         });
     }
 
