@@ -8,6 +8,7 @@
 html {
     height: 100%;
     overflow: auto;
+    user-select: none;
 }
 
 /* 防止元素被点击时出现高亮 */
